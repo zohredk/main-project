@@ -1,5 +1,5 @@
 import React from "react";
-import Wrapper from "../../hoc/Wrapper";
+import Wrapper from "../../../hoc/Wrapper";
 import "./Layout.css";
 
 const Layout = (props) => {

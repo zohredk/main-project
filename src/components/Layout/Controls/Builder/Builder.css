@@ -1,0 +1,24 @@
+.builder {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12px 0;
+}
+
+.builder button {
+  display: block;
+  font: inherit;
+  padding: 5px;
+  margin: 0 12px;
+  width: 80px;
+  background: aqua;
+  color: #ffffff;
+  border: none;
+  border-radius: 3px;
+  outline: none;
+}
+
+.builder div {
+  color: palegreen;
+  margin: 0 12px;
+}
