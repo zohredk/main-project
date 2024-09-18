@@ -3,9 +3,9 @@ import "./Builder.css";
 
 const Builder = (props) => {
   return (
-    <div className="builder">{props.title}</div>,
-    <button> Add</button>,
-    <button> Remove</button>
+    <div className="builder">
+      <div>{props.title}</div>,<button> Add</button>,<button> Remove</button>
+    </div>
   );
 };
 

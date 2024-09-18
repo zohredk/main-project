@@ -11,7 +11,7 @@
   padding: 5px;
   margin: 0 12px;
   width: 80px;
-  background: aqua;
+  background: #28e1e1;
   color: #ffffff;
   border: none;
   border-radius: 3px;
@@ -19,6 +19,6 @@
 }
 
 .builder div {
-  color: palegreen;
+  color: #0a4d91;
   margin: 0 12px;
 }
