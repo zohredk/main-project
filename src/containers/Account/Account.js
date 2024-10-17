@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "../../axios-orders";
 
 import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
@@ -15,6 +16,11 @@ class Account extends React.Component {
           placeholder: "Name...",
         },
         value: "",
+        validation: {
+          required: true,
+        },
+        valid: false,
+        used: false,
       },
       email: {
         elementType: "input",
@@ -23,6 +29,11 @@ class Account extends React.Component {
           placeholder: "Email...",
         },
         value: "",
+        validation: {
+          required: true,
+        },
+        valid: false,
+        used: false,
       },
       password: {
         elementType: "input",
@@ -31,6 +42,11 @@ class Account extends React.Component {
           placeholder: "Password...",
         },
         value: "",
+        validation: {
+          required: true,
+        },
+        valid: false,
+        used: false,
       },
     },
   };
@@ -42,7 +58,23 @@ class Account extends React.Component {
     for (let item in this.state.form) {
       formData[item] = this.state.form[item].value;
     }
-    console.log(formData);
+    axios
+      .post("/account.json", formData)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  checkValiddation = (value, rules) => {
+    let isValid = false;
+
+    if (rules.required) {
+      isValid = value.trim() !== "";
+    }
+    return isValid;
   };
 
   inputChangeHandler = (event, inputElement) => {
@@ -53,6 +85,14 @@ class Account extends React.Component {
       ...updatedForm[inputElement],
     };
     updatedElement.value = event.target.value;
+
+    updatedElement.valid = this.checkValiddation(
+      updatedElement.value,
+      updatedElement.validation
+    );
+
+    updatedElement.used = true;
+
     updatedForm[inputElement] = updatedElement;
 
     this.setState({
@@ -79,6 +119,8 @@ class Account extends React.Component {
                 elementType={item.config.elementType}
                 elementConfig={item.config.elementConfig}
                 value={item.config.value}
+                invalid={!item.config.valid}
+                used={item.config.used}
                 change={(event) => this.inputChangeHandler(event, item.id)}
               />
             );
